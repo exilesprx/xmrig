@@ -21,4 +21,4 @@ RUN make -j$(nproc)
 # Verify binary dependencies
 RUN ldd ./xmrig
 
-ENTRYPOINT ./xmrig -o $POOL:$PORT -u $WALLET -k --tls -p $HOSTNAME
+ENTRYPOINT ./xmrig -o $POOL:$PORT -a $ALGO -u $WALLET -k --tls -p $HOSTNAME

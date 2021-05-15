@@ -1,10 +1,18 @@
 version: "3.8"
 
 services:
-    cpu-miner:
+    monero-miner:
         build: .
         environment:
             - POOL=$POOL
             - PORT=$PORT
             - WALLET=$WALLET
-        
+            - ALGO=${ALOG:-rx/0}
+    
+    dero-miner:
+        build: .
+        environment: 
+            - POOL=$DERO_POOL
+            - PORT=$DERO_PORT
+            - WALLET=$DERO_WALLET
+            - ALGO=${ALGO:-astrobwt}
