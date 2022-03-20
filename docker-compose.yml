@@ -2,17 +2,18 @@ version: "3.8"
 
 services:
     monero-miner:
-        build: .
+        image: exilesprx/xmrig:latest
+        privileged: true
         environment:
             - POOL=$POOL
             - PORT=$PORT
             - WALLET=$WALLET
             - ALGO=${ALOG:-rx/0}
     
-    dero-miner:
-        build: .
-        environment: 
-            - POOL=$DERO_POOL
-            - PORT=$DERO_PORT
-            - WALLET=$DERO_WALLET
-            - ALGO=${ALGO:-astrobwt}
+    # dero-miner:
+    #     build: .
+    #     environment: 
+    #         - POOL=$DERO_POOL
+    #         - PORT=$DERO_PORT
+    #         - WALLET=$DERO_WALLET
+    #         - ALGO=${ALGO:-astrobwt}
