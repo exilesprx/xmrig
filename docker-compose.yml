@@ -4,16 +4,11 @@ services:
     monero-miner:
         image: exilesprx/xmrig:latest
         privileged: true
-        environment:
-            - POOL=$POOL
-            - PORT=$PORT
-            - WALLET=$WALLET
-            - ALGO=${ALOG:-rx/0}
+        env_file:
+            - .env
     
-    # dero-miner:
-    #     build: .
-    #     environment: 
-    #         - POOL=$DERO_POOL
-    #         - PORT=$DERO_PORT
-    #         - WALLET=$DERO_WALLET
-    #         - ALGO=${ALGO:-astrobwt}
+    dero-miner:
+        image: exilesprx/dero:latest
+        privileged: true
+        env_file:
+            - .env
