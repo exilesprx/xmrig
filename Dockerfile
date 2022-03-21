@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:11-slim
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
@@ -10,6 +10,8 @@ RUN apt-get -y install git build-essential cmake libuv1-dev libssl-dev libhwloc-
 
 # Install xmrig
 RUN git clone https://github.com/xmrig/xmrig.git
+
+RUN cd xmrig && git checkout tags/v6.16.4
 
 WORKDIR /xmrig/build
 
