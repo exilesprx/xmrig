@@ -9,7 +9,10 @@ RUN apt-get -y install git build-essential cmake libuv1-dev libssl-dev libhwloc-
 
 WORKDIR /usr/lib/
 
-# Install xmrig
+
+# Build XMrig
+FROM build as xmrig
+
 RUN git clone https://github.com/xmrig/xmrig.git
 
 RUN cd xmrig && git checkout tags/v6.16.4
@@ -25,7 +28,7 @@ RUN ldd ./xmrig
 
 
 ## Make the miner
-FROM build as miner
+FROM xmrig as miner
 
 WORKDIR /usr/bin
 
