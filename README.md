@@ -1,20 +1,17 @@
 # CPU miner
 
-## Distro
-- Debian buster
+## Specs
+- Debian 11 slim
+- XMrig v6.16.4
+    - Ref: https://xmrig.com/docs/miner/build/ubuntu
 
 ## Huge pages
-- helper script to enable huge pages on host machine
-- dockerfile enables huge pages on build:
-```
-# Enable huge pages
-RUN sed -i 's/"1gb-pages":\ false/"1gb-pages":\ true/g' ../src/config.json
+- helper scripts to enable huge pages on host machine and docker container
+    - docker:   enable_huge_pages_miner.sh
+    - host:     enable_1gb_pages_host.sh
 
-RUN echo vm.nr_hugepages=1280 >> /etc/sysctl.conf
-```
-
-## Miner: xmrig
-- Ref: https://xmrig.com/docs/miner/build/ubuntu
+## Env files
+- these are broken out into explicit files for each miner type, monero and dero
 
 ## Notes:
 - If host machine is restarted, rerun enable_1gb_pages.sh script.

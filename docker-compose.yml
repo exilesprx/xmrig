@@ -2,13 +2,13 @@ version: "3.8"
 
 services:
     monero:
-        image: exilesprx/xmrig:latest
+        image: exilesprx/xmrig:10
         privileged: true
         env_file:
-            - .env
+            - .env.monero
     
     dero:
         image: exilesprx/dero:latest
         privileged: true
         env_file:
-            - .env
+            - .env.dero

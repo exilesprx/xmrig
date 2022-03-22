@@ -27,15 +27,14 @@ RUN ldd ./xmrig
 ## Make the miner
 FROM debian:11-slim as miner
 
+WORKDIR /usr/bin
+
 COPY --from=build /usr/lib/xmrig/build /usr/bin
 
 COPY --from=build /usr/lib/xmrig/src/config.json /usr/bin/
 
-WORKDIR /usr/bin
+COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
 
-# Enable huge pages
-RUN sed -i 's/"1gb-pages":\ false/"1gb-pages":\ true/g' config.json
-
-RUN echo vm.nr_hugepages=1280 >> /etc/sysctl.conf
+RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
 ENTRYPOINT ./xmrig -o $POOL:$PORT -a $ALGO -u $WALLET -k --tls -p $HOSTNAME
