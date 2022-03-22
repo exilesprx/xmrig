@@ -25,7 +25,7 @@ RUN ldd ./xmrig
 
 
 ## Make the miner
-FROM debian:11-slim as miner
+FROM build as miner
 
 WORKDIR /usr/bin
 
