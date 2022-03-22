@@ -32,9 +32,9 @@ FROM xmrig as miner
 
 WORKDIR /usr/bin
 
-COPY --from=build /usr/lib/xmrig/build /usr/bin
+COPY --from=xmrig /usr/lib/xmrig/build /usr/bin
 
-COPY --from=build /usr/lib/xmrig/src/config.json /usr/bin/
+COPY --from=xmrig /usr/lib/xmrig/src/config.json /usr/bin/
 
 COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
 
