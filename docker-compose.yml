@@ -6,10 +6,11 @@ services:
         privileged: true
         env_file:
             - .env.monero
-        log_driver: "gelf"
-        log_opt:
-            gelf-address: "udp://graylog:12201"
-            gelf-tag: "monero"
+        logging:
+            driver: "gelf"
+            options:
+                gelf-address: "udp://localhost:12201"
+                tag: "monero"
         depends_on:
             - graylog
 
@@ -30,13 +31,13 @@ services:
             - network.host=0.0.0.0
             - "ES_JAVA_OPTS=-Dlog4j2.formatMsgNoLookups=true -Xms512m -Xmx512m"
         ulimits:
-        memlock:
-            soft: -1
-            hard: -1
+            memlock:
+                soft: -1
+                hard: -1
         deploy:
-        resources:
-            limits:
-            memory: 1g
+            resources:
+                limits:
+                    memory: 1g
 
     # Graylog: https://hub.docker.com/r/graylog/graylog/
     graylog:
