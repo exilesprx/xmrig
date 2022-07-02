@@ -2,7 +2,7 @@
 
 ## Specs
 - Debian 11.3 slim
-- XMrig v6.16.4
+- XMrig v6.18.0
     - Ref: https://xmrig.com/docs/miner/build/ubuntu
 ## Huge pages
 - helper scripts to enable huge pages on host machine and docker container

@@ -15,7 +15,7 @@ FROM build as xmrig
 
 RUN git clone https://github.com/xmrig/xmrig.git
 
-RUN cd xmrig && git checkout tags/v6.16.4
+RUN cd xmrig && git checkout tags/v6.18.0
 
 WORKDIR /usr/lib/xmrig/build
 
