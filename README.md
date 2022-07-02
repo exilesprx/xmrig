@@ -1,7 +1,7 @@
 # CPU miner
 
 ## Specs
-- Debian 11.3 slim
+- Debian Bullseye 20220622 slim
 - XMrig v6.18.0
     - Ref: https://xmrig.com/docs/miner/build/ubuntu
 ## Huge pages

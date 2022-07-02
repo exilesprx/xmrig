@@ -1,4 +1,4 @@
-FROM debian:11.3-slim as build
+FROM debian:bullseye-20220622-slim as build
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
