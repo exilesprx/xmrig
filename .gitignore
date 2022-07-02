@@ -3,4 +3,5 @@ config.json
 .env
 .env.monero
 .env.dero
+.env.graylog
 .dccache

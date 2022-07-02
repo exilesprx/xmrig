@@ -14,3 +14,11 @@
 
 ## Notes:
 - If host machine is restarted, rerun enable_1gb_pages.sh script.
+
+## Graylog extractor
+```
+Configuration
+regex: \x1b\[[0-9;]*m
+replacement: -
+replace_all:
+```
