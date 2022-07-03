@@ -4,12 +4,7 @@ LABEL maintainer="campbell.andrew86@yahoo.com"
 
 # Install dependencies
 RUN apt-get -y update \
-  && apt-get -y install --no-install-recommends git \
-  && build-essential \
-  && cmake \
-  && libuv1-dev \
-  && libssl-dev \
-  && libhwloc-dev \
+  && apt-get -y install --no-install-recommends git build-essential cmake libuv1-dev libssl-dev libhwloc-dev \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
