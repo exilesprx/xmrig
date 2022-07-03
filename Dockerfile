@@ -15,7 +15,9 @@ FROM build as xmrig
 
 RUN git clone https://github.com/xmrig/xmrig.git
 
-RUN cd xmrig && git checkout tags/v6.18.0
+WORKDIR /usr/lib/xmrig
+
+RUN git checkout tags/v6.18.0
 
 WORKDIR /usr/lib/xmrig/build
 
@@ -40,4 +42,4 @@ COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
 
 RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
-ENTRYPOINT ./xmrig -o $POOL:$PORT -a $ALGO -u $WALLET -k --tls -p $HOSTNAME
+ENTRYPOINT ["./xmrig", "-o", "${POOL}:${PORT}", "-a", "${ALGO}", "-u", "${WALLET}", "-k", "--tls", "-p", "${HOSTNAME}"]
