@@ -1,0 +1,13 @@
+# This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
+version: 2.1
+
+orbs:
+  docker: circleci/docker@2.0.3
+
+workflows:
+  app:
+    jobs:
+      - docker/hadolint:
+          dockerfiles: 'Dockerfile'
+          ignore-rules: 'DL4005,DL3008'
+          trusted-registries: 'docker.io'
