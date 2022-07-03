@@ -23,7 +23,7 @@ WORKDIR /usr/lib/xmrig/build
 
 RUN cmake ..
 
-RUN make -j$(nproc)
+RUN make -j"$(nproc)"
 
 # Verify binary dependencies
 RUN ldd ./xmrig
