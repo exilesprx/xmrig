@@ -10,7 +10,8 @@ RUN apt-get -y update \
   && libuv1-dev \
   && libssl-dev \
   && libhwloc-dev \
-  && apt-get clean
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/lib/
 
