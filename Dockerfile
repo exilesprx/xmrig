@@ -2,10 +2,15 @@ FROM debian:bullseye-20220622-slim as build
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
-RUN apt-get -y update
-
 # Install dependencies
-RUN apt-get -y install git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+RUN apt-get -y update \
+  && apt-get -y install --no-install-recommends git \
+  && build-essential \
+  && cmake \
+  && libuv1-dev \
+  && libssl-dev \
+  && libhwloc-dev \
+  && apt-get clean
 
 WORKDIR /usr/lib/
 
