@@ -1,18 +1,18 @@
-FROM debian:bullseye-20220622-slim as build
+FROM debian:bullseye-20220622-slim as deps
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
 # Install dependencies
 RUN apt-get -y update \
-  && apt-get -y install --no-install-recommends git build-essential cmake libuv1-dev libssl-dev libhwloc-dev \
+  && apt-get -y install --no-install-recommends git build-essential cmake \
+    libuv1-dev libssl-dev libhwloc-dev ca-certificates \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/lib/
 
-
 # Build XMrig
-FROM build as xmrig
+FROM deps as build
 
 RUN git clone https://github.com/xmrig/xmrig.git
 
@@ -31,7 +31,7 @@ RUN ldd ./xmrig
 
 
 ## Make the miner
-FROM xmrig as miner
+FROM build as xmrig
 
 WORKDIR /usr/bin
 
