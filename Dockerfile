@@ -35,11 +35,17 @@ FROM build as xmrig
 
 WORKDIR /usr/bin
 
+RUN groupadd -r xmrig && useradd --no-log-init -r -g xmrig xmrig
+
+USER xmrig
+
 COPY --from=build /usr/lib/xmrig/build /usr/bin
 
 COPY --from=build /usr/lib/xmrig/src/config.json /usr/bin/
 
 COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
+
+COPY ./scripts/entrypoint.sh entrypoint.sh
 
 RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
