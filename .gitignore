@@ -1,7 +1,5 @@
-config.json
+xmrig.json
 .vscode
 .env
-.env.monero
-.env.dero
-.env.graylog
+.env.*
 .dccache

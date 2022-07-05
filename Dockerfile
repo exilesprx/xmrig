@@ -37,10 +37,10 @@ WORKDIR /usr/bin
 
 COPY --from=build /usr/lib/xmrig/build /usr/bin
 
-COPY --from=build /usr/lib/xmrig/src/config.json /usr/bin/
-
 COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
+
+COPY ./scripts/entrypoint.sh entrypoint.sh
 
 RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
-ENTRYPOINT ["./xmrig", "-o", "${POOL}:${PORT}", "-a", "${ALGO}", "-u", "${WALLET}", "-k", "--tls", "-p", "${HOSTNAME}"]
+ENTRYPOINT [ "entrypoint.sh" ]

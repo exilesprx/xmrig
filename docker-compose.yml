@@ -4,8 +4,10 @@ services:
     monero:
         image: exilesprx/xmrig:release-v3.0.0
         privileged: true
-        env_file:
-            - .env.monero
+        volumes:
+            - ./example.xmrig.json:/tmp/xmrig.json
+        environment:
+            - CONFIG_FILE=/tmp/xmrig.json
         logging:
             driver: gelf
             options:
