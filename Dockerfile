@@ -5,7 +5,7 @@ LABEL maintainer="campbell.andrew86@yahoo.com"
 # Install dependencies
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends git build-essential cmake \
-    libuv1-dev libssl-dev libhwloc-dev ca-certificates \
+    automake libtool autoconf ca-certificates wget \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -20,9 +20,13 @@ WORKDIR /usr/lib/xmrig
 
 RUN git checkout tags/v6.18.0
 
+WORKDIR /usr/lib/xmrig/scripts
+
+RUN ./build_deps.sh
+
 WORKDIR /usr/lib/xmrig/build
 
-RUN cmake ..
+RUN cmake .. -DXMRIG_DEPS=scripts/deps
 
 RUN make -j"$(nproc)"
 
