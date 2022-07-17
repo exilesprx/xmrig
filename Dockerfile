@@ -47,4 +47,4 @@ COPY ./scripts/entrypoint.sh entrypoint.sh
 
 RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
-ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
