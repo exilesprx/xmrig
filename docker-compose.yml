@@ -5,9 +5,9 @@ services:
         image: exilesprx/xmrig:release-v3.2.2
         privileged: true
         volumes:
-            - ./xmrig.json:/tmp/xmrig.json
+            - ./xmrig.json:/etc/xmrig/xmrig.json
         environment:
-            - CONFIG_FILE=/tmp/xmrig.json
+            - CONFIG_FILE=/etc/xmrig/xmrig.json
         logging:
             driver: gelf
             options:
