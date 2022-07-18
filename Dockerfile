@@ -43,8 +43,10 @@ COPY --from=build /usr/lib/xmrig/build /usr/bin
 
 COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
 
+RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
+
 COPY ./scripts/entrypoint.sh entrypoint.sh
 
-RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
+RUN chmod +x entrypoint.sh
 
 ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
