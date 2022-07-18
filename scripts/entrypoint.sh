@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./xmrig -p ${HOSTNAME} -c ${CONFIG_FILE}
+./xmrig -c ${CONFIG_FILE}
