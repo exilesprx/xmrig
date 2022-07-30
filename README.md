@@ -1,3 +1,6 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/exilesprx/xmrig/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/exilesprx/xmrig/tree/main)
+
+
 # CPU miner
 - Clone repo
 - Run ```enable_1gb_pages_host.sh``` on host machine
