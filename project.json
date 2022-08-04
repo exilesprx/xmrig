@@ -1,6 +1,6 @@
 {
   "name": "exilesprx/xmrig",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "Monero miner",
   "type": "docker",
   "author": "Exilesprx",
