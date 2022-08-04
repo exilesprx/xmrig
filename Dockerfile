@@ -37,6 +37,8 @@ RUN ldd ./xmrig
 ## Make the miner
 FROM build as xmrig
 
+LABEL version="3.3.0"
+
 WORKDIR /usr/bin
 
 COPY --from=build /usr/lib/xmrig/build /usr/bin
