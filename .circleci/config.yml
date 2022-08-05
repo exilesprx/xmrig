@@ -13,21 +13,16 @@ jobs:
       - gh/install
       - checkout
       - run:
-          name: "Create tag"
+          name: "Github login"
+          command: printf '%s\n' "$GIT_HUB_TOKEN" | gh auth login --with-token
+      - run:
+          name: "Create relase"
           command: |
             TAG=$(awk -F'"' '/"version": ".+"/{ print $4; exit; }' $VERSION_FILE)
             if [ -z "${TAG}" ]; then
               exit 1
             fi
             echo "Found version: ${TAG}"
-            echo 'export TAG' >> $BASH_ENV
-      - run:
-          name: "Github login"
-          command: printf '%s\n' "$GIT_HUB_TOKEN" | gh auth login --with-token
-      - run:
-          name: "Create release"
-          command: |
-            echo ${TAG}
             gh release create v$TAG -d --notes "Release v${TAG}"
 
 workflows:
