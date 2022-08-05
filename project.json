@@ -1,0 +1,12 @@
+{
+  "name": "exilesprx/xmrig",
+  "version": "3.3.1",
+  "description": "Monero miner",
+  "type": "docker",
+  "author": "Exilesprx",
+  "license": "MIT",
+  "dependencies": {
+    "debian": "bullseye-20220711-slim",
+    "xmring": "6.18"
+  }
+}

@@ -49,4 +49,6 @@ COPY ./scripts/entrypoint.sh entrypoint.sh
 
 RUN chmod +x entrypoint.sh
 
+LABEL version="3.3.1"
+
 ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]

@@ -3,6 +3,27 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@2.0.3
+  gh: circleci/github-cli@2.1
+
+jobs:
+  create-release:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - gh/install
+      - checkout
+      - run:
+          name: "Github login"
+          command: printf '%s\n' "$GIT_HUB_TOKEN" | gh auth login --with-token
+      - run:
+          name: "Create relase"
+          command: |
+            TAG=$(awk -F'"' '/"version": ".+"/{ print $4; exit; }' $VERSION_FILE)
+            if [ -z "${TAG}" ]; then
+              exit 1
+            fi
+            echo "Found version: ${TAG}"
+            gh release create v$TAG -d --notes "Release v${TAG}"
 
 workflows:
   app:
@@ -11,3 +32,10 @@ workflows:
           dockerfiles: 'Dockerfile'
           ignore-rules: 'DL4005,DL3008'
           trusted-registries: 'docker.io'
+      - create-release:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - docker/hadolint
