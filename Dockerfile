@@ -1,4 +1,4 @@
-FROM debian:bullseye-20220711-slim as deps
+FROM debian:bullseye-20220801-slim as deps
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
@@ -49,6 +49,7 @@ COPY ./scripts/entrypoint.sh entrypoint.sh
 
 RUN chmod +x entrypoint.sh
 
-LABEL version="3.3.1"
+ARG DOCKER_TAG
+LABEL version="${DOCKER_TAG}"
 
 ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
