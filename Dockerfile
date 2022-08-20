@@ -50,6 +50,7 @@ COPY ./scripts/entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 
 ARG DOCKER_TAG
+
 LABEL version="${DOCKER_TAG}"
 
 ENTRYPOINT [ "/usr/bin/entrypoint.sh" ]
