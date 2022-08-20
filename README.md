@@ -10,9 +10,7 @@
 - Update ```.env.graylog``` if needed (defaults should be ok to start)
 
 ## Specs
-- Debian Bullseye 20220711 slim
-- XMrig v6.18.0
-    - Ref: https://xmrig.com/docs/miner/build/ubuntu
+- Refer to project.json file
     
 ## Huge pages
 - helper scripts to enable huge pages on host machine and docker container
