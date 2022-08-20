@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     monero:
-        image: exilesprx/xmrig:release-v3.3.1
+        image: exilesprx/xmrig:release-v3.4.0
         privileged: true
         volumes:
             - ./xmrig.json:/etc/xmrig/xmrig.json
