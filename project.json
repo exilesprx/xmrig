@@ -5,7 +5,7 @@
   "author": "Exilesprx",
   "license": "MIT",
   "dependencies": {
-    "debian": "bullseye-20220801-slim",
+    "debian": "bullseye-20220822-slim",
     "xmring": "6.18"
   }
 }
