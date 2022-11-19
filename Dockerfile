@@ -1,4 +1,4 @@
-FROM debian:bullseye-20221004-slim as deps
+FROM debian:bullseye-20221114-slim as deps
 
 LABEL maintainer="campbell.andrew86@yahoo.com"
 
