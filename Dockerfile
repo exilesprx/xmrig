@@ -1,6 +1,6 @@
 FROM debian:bullseye-20230703-slim as deps
 
-LABEL maintainer="campbell.andrew86@yahoo.com"
+LABEL maintainer="exilesprx@gmail.com"
 
 # Install dependencies
 RUN apt-get -y update \
