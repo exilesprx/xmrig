@@ -18,7 +18,7 @@ RUN git clone https://github.com/xmrig/xmrig.git
 
 WORKDIR /usr/lib/xmrig
 
-RUN git fetch && git checkout tags/v6.19.2
+RUN git fetch && git checkout tags/v6.20.0
 
 WORKDIR /usr/lib/xmrig/scripts
 
