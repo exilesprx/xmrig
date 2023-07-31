@@ -1,4 +1,4 @@
-FROM debian:bullseye-20230703-slim as deps
+FROM debian:bullseye-20230725-slim as deps
 
 LABEL maintainer="exiles.prx@gmail.com"
 
