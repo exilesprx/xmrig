@@ -13,8 +13,9 @@ WORKDIR /usr/lib/
 
 RUN git clone https://github.com/xmrig/xmrig.git
 
-RUN cd /usr/lib/xmrig \
-  && git fetch \
+WORKDIR /usr/lib/xmrig
+
+RUN git fetch \
   && git checkout tags/v6.20.0
 
 
