@@ -1,5 +1,12 @@
 #!/bin/bash
 
-echo "Building..."
+echo "Building source..."
+DOCKER_BUILDKIT=1 docker compose -f docker-compose.build.yml build source
 
-DOCKER_BUILDKIT=1 docker build -f ./Dockerfile -t exilesprx/xmrig:build .
+
+echo "Building build..."
+DOCKER_BUILDKIT=1 docker compose -f docker-compose.build.yml build build
+
+
+echo "Building miner..."
+DOCKER_BUILDKIT=1 docker compose -f docker-compose.build.yml build miner
