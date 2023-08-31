@@ -1,4 +1,4 @@
-FROM debian:bookworm-20230814-slim as deps
+FROM debian:bookworm-20230814-slim as source
 
 LABEL maintainer="exiles.prx@gmail.com"
 
@@ -11,14 +11,15 @@ RUN apt-get -y update \
 
 WORKDIR /usr/lib/
 
-# Build XMrig
-FROM deps as build
-
 RUN git clone https://github.com/xmrig/xmrig.git
 
-WORKDIR /usr/lib/xmrig
+RUN cd /usr/lib/xmrig \
+  && git fetch \
+  && git checkout tags/v6.20.0
 
-RUN git fetch && git checkout tags/v6.20.0
+
+# Build XMrig
+FROM exilesprx/xmrig:source AS build
 
 WORKDIR /usr/lib/xmrig/scripts
 
@@ -30,12 +31,9 @@ RUN cmake .. -DXMRIG_DEPS=scripts/deps
 
 RUN make -j"$(nproc)"
 
-# Verify binary dependencies
-RUN ldd ./xmrig
-
 
 ## Make the miner
-FROM build as xmrig
+FROM exilesprx/xmrig:build AS miner
 
 WORKDIR /usr/bin
 
@@ -43,9 +41,9 @@ COPY --from=build /usr/lib/xmrig/build /usr/bin
 
 COPY ./scripts/enable_huge_pages_miner.sh enable_huge_pages.sh
 
-RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
-
 COPY ./scripts/entrypoint.sh entrypoint.sh
+
+RUN chmod +x enable_huge_pages.sh && ./enable_huge_pages.sh
 
 RUN chmod +x entrypoint.sh
 
