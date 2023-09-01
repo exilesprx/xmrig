@@ -22,4 +22,5 @@ jobs:
           VERSION: ${{  github.ref_name }}
         run: |
           echo "Release $VERSION"
-          docker compose -f docker-compose.build.yml build miner
+          docker compose -f docker-compose.build.yml build --pull miner
+          docker compose -f docker-compose.build.yml push miner
