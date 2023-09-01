@@ -9,7 +9,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Lint
         run: docker run --rm -i hadolint/hadolint < Dockerfile
