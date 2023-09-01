@@ -1,4 +1,5 @@
 services:
+
   source:
     image: exilesprx/xmrig:source
     build:
@@ -14,12 +15,3 @@ services:
       target: build
       cache_from:
         - exilesprx/xmrig:source
-
-  miner:
-    image: exilesprx/xmrig:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: miner
-      cache_from:
-        - exilesprx/xmrig:build

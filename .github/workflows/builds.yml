@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  docker:
+  builds:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Get source code and dependencies
+      - name: Install source code and dependencies
         run: |
           docker compose -f docker-compose.build.yml build --pull source
           docker compose -f docker-compose.build.yml push source
@@ -29,8 +29,3 @@ jobs:
 
       - name: Verify Build
         run: docker run exilesprx/xmrig:build ldd ./xmrig
-
-      - name: Create the miner
-        run: |
-          docker compose -f docker-compose.build.yml build --pull miner
-          docker compose -f docker-compose.build.yml push miner
