@@ -19,12 +19,12 @@ jobs:
 
       - name: Source
         run: |
-          docker compose -f docker-compose.build.yml build source
+          docker compose -f docker-compose.build.yml build --pull source
           docker compose -f docker-compose.build.yml push source
 
       - name: Build
         run: |
-          docker compose -f docker-compose.build.yml build build
+          docker compose -f docker-compose.build.yml build --pull build
           docker compose -f docker-compose.build.yml push build
 
       - name: Verify Build
@@ -32,5 +32,5 @@ jobs:
 
       - name: Miner
         run: |
-          docker compose -f docker-compose.build.yml build miner
+          docker compose -f docker-compose.build.yml build --pull miner
           docker compose -f docker-compose.build.yml push miner
