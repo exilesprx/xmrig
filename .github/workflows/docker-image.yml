@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build source
+        name: Source
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -25,3 +25,27 @@ jobs:
           push: true
           tags: exilesprx/xmrig:source
           target: source
+      -
+        name: Build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          pull: true
+          push: true
+          tags: exilesprx/xmrig:build
+          target: build
+      -
+        name: Verify build
+        run: ./build-verification.sh
+      -
+        name: Test
+        run: docker compose version
+      -
+        name: Miner
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          pull: true
+          push: true
+          tags: exilesprx/xmrig:
+          target: miner
