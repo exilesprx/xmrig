@@ -17,6 +17,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Verify Build
+        run: docker run exilesprx/xmrig:build ldd ./xmrig
+
       - name: Build release
         env:
           VERSION: ${{  github.ref_name }}

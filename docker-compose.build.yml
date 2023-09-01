@@ -36,4 +36,4 @@ services:
       cache_from:
         - exilesprx/xmrig:miner
       tags:
-        - exilesprx/xmrig:${VERSION}
+        - exilesprx/xmrig:release-${VERSION}
