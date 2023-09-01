@@ -1,7 +1,9 @@
 name: Docker Builds
 
 on:
-  push
+  push:
+    branches:
+      - 'main'
 
 jobs:
   docker:
@@ -25,7 +27,7 @@ jobs:
           docker compose -f docker-compose.build.yml build build
           docker compose -f docker-compose.build.yml push build
 
-      - name: Test
+      - name: Verify Build
         run: docker run exilesprx/xmrig:build ldd ./xmrig
 
       - name: Miner
