@@ -1,39 +1,17 @@
 services:
+
   source:
+    image: exilesprx/xmrig:source
     build:
       context: .
       dockerfile: Dockerfile
       target: source
-      tags:
-        - exilesprx/xmrig:source
 
   build:
+    image: exilesprx/xmrig:build
     build:
       context: .
       dockerfile: Dockerfile
       target: build
       cache_from:
         - exilesprx/xmrig:source
-      tags:
-        - exilesprx/xmrig:build
-
-  miner:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: miner
-      cache_from:
-        - exilesprx/xmrig:build
-      tags:
-        - exilesprx/xmrig:miner
-        - exilesprx/xmrig:latest
-
-  release:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: miner
-      cache_from:
-        - exilesprx/xmrig:miner
-      tags:
-        - exilesprx/xmrig:release-${VERSION}

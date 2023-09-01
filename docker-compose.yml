@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
     monero:
-        image: exilesprx/xmrig:release-v3.4.0
+        image: exilesprx/xmrig:release-v${RELEASE}
         privileged: true
         volumes:
             - ./xmrig.json:/etc/xmrig/xmrig.json
@@ -18,13 +18,12 @@ services:
 
     # MongoDB: https://hub.docker.com/_/mongo/
     mongo:
-        image: mongo:4.2
+        image: mongo:6.0.9
         volumes:
             - mongo-data:/data/db
 
-    # Elasticsearch: https://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
     elasticsearch:
-        image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+        image: elasticsearch:7.17.12
         volumes:
             - es-data:/usr/share/elasticsearch/data
         environment:
@@ -43,7 +42,7 @@ services:
 
     # Graylog: https://hub.docker.com/r/graylog/graylog/
     graylog:
-        image: graylog/graylog:4.2
+        image: graylog/graylog:5.1.4
         volumes:
             - graylog-data:/usr/share/graylog/data
         env_file:
