@@ -26,3 +26,14 @@ services:
         - exilesprx/xmrig:build
       tags:
         - exilesprx/xmrig:miner
+        - exilesprx/xmrig:latest
+
+  release:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: miner
+      cache_from:
+        - exilesprx/xmrig:miner
+      tags:
+        - exilesprx/xmrig:${VERSION}
