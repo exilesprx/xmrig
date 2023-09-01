@@ -1,0 +1,9 @@
+services:
+  version:
+    image: exilesprx/xmrig:release-${VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: miner
+      cache_from:
+        - exilesprx/xmrig:build

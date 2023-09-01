@@ -17,12 +17,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Source
+      - name: Get source code and dependencies
         run: |
           docker compose -f docker-compose.build.yml build --pull source
           docker compose -f docker-compose.build.yml push source
 
-      - name: Build
+      - name: Build XMrig
         run: |
           docker compose -f docker-compose.build.yml build --pull build
           docker compose -f docker-compose.build.yml push build
@@ -30,7 +30,7 @@ jobs:
       - name: Verify Build
         run: docker run exilesprx/xmrig:build ldd ./xmrig
 
-      - name: Miner
+      - name: Create the miner
         run: |
           docker compose -f docker-compose.build.yml build --pull miner
           docker compose -f docker-compose.build.yml push miner
