@@ -17,15 +17,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Install source code and dependencies
+      - name: Image for source
         run: |
           docker compose -f docker-compose.build.yml build --pull source
           docker compose -f docker-compose.build.yml push source
 
-      - name: Build XMrig
+      - name: Image for build
         run: |
           docker compose -f docker-compose.build.yml build --pull build
           docker compose -f docker-compose.build.yml push build
 
-      - name: Verify Build
+      - name: Verify build image
         run: docker run exilesprx/xmrig:build ldd ./xmrig
