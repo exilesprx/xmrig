@@ -16,16 +16,19 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Source
-        run: docker compose -f docker-compose.build.yml build source
-        run: docker compose -f docker-compose.build.yml push source
+        run: |
+          docker compose -f docker-compose.build.yml build source
+          docker compose -f docker-compose.build.yml push source
 
       - name: Build
-        run: docker compose -f docker-compose.build.yml build build
-        run: docker compose -f docker-compose.build.yml push build
+        run: |
+          docker compose -f docker-compose.build.yml build build
+          docker compose -f docker-compose.build.yml push build
 
       - name: Test
         run: docker run exilesprx/xmrig:build ldd ./xmrig
 
       - name: Miner
-        run: docker compose -f docker-compose.build.yml build miner
-        run: docker compose -f docker-compose.build.yml push miner
+        run: |
+          docker compose -f docker-compose.build.yml build miner
+          docker compose -f docker-compose.build.yml push miner

@@ -20,5 +20,6 @@ jobs:
       - name: Build release
         env:
           VERSION: ${{  github.ref_name }}
-        run: echo "Release $VERSION"
-        run: docker compose -f docker-compose.build.yml build miner
+        run: |
+          echo "Release $VERSION"
+          docker compose -f docker-compose.build.yml build miner
