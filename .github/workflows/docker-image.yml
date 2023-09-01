@@ -1,0 +1,36 @@
+name: Docker Builds
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Source
+        run: |
+          docker compose -f docker-compose.build.yml build source
+          docker compose -f docker-compose.build.yml push source
+
+      - name: Build
+        run: |
+          docker compose -f docker-compose.build.yml build build
+          docker compose -f docker-compose.build.yml push build
+
+      - name: Verify Build
+        run: docker run exilesprx/xmrig:build ldd ./xmrig
+
+      - name: Miner
+        run: |
+          docker compose -f docker-compose.build.yml build miner
+          docker compose -f docker-compose.build.yml push miner
