@@ -25,5 +25,5 @@ jobs:
           VERSION: ${{  github.ref_name }}
         run: |
           echo "Release $VERSION"
-          docker compose -f docker-compose.version.yml build --pull release
-          docker compose -f docker-compose.version.yml push release
+          docker compose -f docker-compose.version.yml build --pull version
+          docker compose -f docker-compose.version.yml push version
