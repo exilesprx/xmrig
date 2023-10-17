@@ -1,4 +1,4 @@
-FROM debian:bookworm-20230919-slim as source
+FROM debian:bookworm-20231009-slim as source
 
 LABEL maintainer="exiles.prx@gmail.com"
 
