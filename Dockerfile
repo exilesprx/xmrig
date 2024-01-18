@@ -37,5 +37,5 @@ FROM base AS miner
 COPY --from=build /usr/lib/xmrig/build /usr/local/bin/
 COPY --chmod=555 scripts/enable_huge_pages_miner.sh /usr/local/bin/enable_huge_pages.sh
 COPY --chmod=555 scripts/entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN /usr/bin/local/enable_huge_pages.sh
+RUN /usr/local/bin/enable_huge_pages.sh
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
