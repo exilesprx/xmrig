@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./xmrig -c ${CONFIG_FILE}
+command /usr/bin/local/xmrig -c ${CONFIG_FILE}
