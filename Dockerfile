@@ -1,4 +1,4 @@
-FROM debian:bookworm-20240130-slim AS base
+FROM debian:bookworm-20240211-slim AS base
 
 
 FROM base AS source
