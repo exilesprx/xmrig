@@ -6,21 +6,21 @@ FROM base AS source
 LABEL maintainer="exiles.prx@gmail.com"
 RUN apt-get -y update \
   && apt-get -y install --no-install-recommends \
-    autoconf \
-    automake \
-    ca-certificates \
-    cmake \
-    build-essential \
-    git \
-    libtool \
-    wget \
+  autoconf \
+  automake \
+  ca-certificates \
+  cmake \
+  build-essential \
+  git \
+  libtool \
+  wget \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/lib/
 RUN git clone https://github.com/xmrig/xmrig.git
 WORKDIR /usr/lib/xmrig
 RUN git fetch \
-  && git checkout tags/v6.21.0
+  && git checkout tags/v6.21.3
 
 
 FROM exilesprx/xmrig:source AS build
